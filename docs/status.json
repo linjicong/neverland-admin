@@ -1,0 +1,1983 @@
+{
+  "timestamp": "2026-05-23T14:33:57.330Z",
+  "season": "Spring",
+  "day": 1,
+  "year": 594,
+  "weather": "sunny",
+  "weather_forecast": {
+    "tomorrow": "rainy",
+    "confidence": 0.85
+  },
+  "energy": {
+    "current": 503,
+    "max": 590,
+    "status": "充沛"
+  },
+  "gold": 997416,
+  "xp": 2032602,
+  "xp_to_next": 3000000,
+  "farm_level": 10,
+  "farm_description": "你的农场位于鹈鹕镇郊外，土地平坦肥沃。已开垦144块土地，其中种植了90块古代果实（生长中）。",
+  "crops": [
+    {
+      "type": "ancient_fruit",
+      "name": "古代果实",
+      "count": 90,
+      "growth_stage": 2,
+      "days_to_harvest": 9,
+      "watered_today": true,
+      "status": "生长中"
+    }
+  ],
+  "crops_detail": [
+    {
+      "crop_id": "8e59a212-d892-408f-b000-8d8f49850096",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a9c6dbdd-8bbd-426d-bcbc-61c4435cf896",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "7b8a812d-1eaf-4bb8-b903-f836df541d0c",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 2,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "b3a82a73-22e2-4a2e-8b5f-3e63608a225b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "4223812a-cb3b-428d-80d7-3337403ed856",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "77774da5-2464-4326-83c2-d98c7f032c47",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 6,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "abd816cc-7e63-4419-8acf-7c9c8946245d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 7,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a37a8aa4-f5db-4f87-b8b2-1b7525cf56a2",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 8,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "1ca295e5-9468-4829-87ef-041aa2725d4d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 9,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "3bd7bca0-fd70-4161-9321-e3a3b7453768",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 10,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "96b173c2-7c26-4048-bf0e-5f6ef86e21a0",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 11,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "27e1e97b-1263-4452-ad57-f30ed2e5cc56",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 2,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "59d92033-a891-4caf-8806-b642bfca5791",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 3,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "5283c81d-502e-4a8e-9280-89cc73739b07",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 4,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a1024cd7-7a00-4e98-b43a-fc5f3a09f069",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 8,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f7ef4c73-a323-4502-8fd2-7bd41fc7653b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 2,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "cfe00434-693c-4719-9db3-04529dc79ba5",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 3,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "e4e2468a-9f68-40e3-819e-2523d0d56eb3",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 4,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "010ef155-cc14-46e0-a1e5-3bc34b8cb3f9",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 5,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "38f287d1-1004-4c19-aced-bf67eb6f2ed2",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 6,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "ca670f62-2211-4c88-bc51-d85246742008",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 7,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "49359b3d-7289-4f02-a8e5-b533bda7d612",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 8,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a2215f8b-4a2f-4873-b372-77df8dc96423",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 9,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "550ad1b1-bddb-4031-b16e-1735b8e35c9d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 10,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a336dbab-7fe9-4749-85e3-79634de290c3",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 11,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "1350a505-dea3-43d2-be48-724c08ab4388",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 9,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "b4429c22-03bf-4d00-b841-b59e077bdb60",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 10,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f9d945d8-7cf3-4c7a-9ca4-164214988d39",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 11,
+      "position_y": 0,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "e269f258-8c1a-4d33-a492-9d178abf9b20",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 1,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "b499a992-892b-4812-abd6-bde96a513d3b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 7,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f8210c87-61f5-4a94-9d66-168c434b0748",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 2,
+      "position_y": 1,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "4e402cf1-978f-4e9c-9288-24eeb0db1429",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 2,
+      "position_y": 11,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "9e3ddf01-dfb9-48ab-95f5-ef88b1777daa",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 3,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f5870216-2ddb-4039-889d-4d98f7591f55",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 4,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "764abc0e-a050-4ad0-8e08-8343fc8ffc8e",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 5,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "ea74d3b9-392a-4d56-93df-27bd91d28e14",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 6,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "99c57fa9-3879-4b58-ba6b-faa5b4889ebb",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 7,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "4809cfe8-ac47-4e7c-936c-a571d7acca6b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 8,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f55aa101-cc61-441a-b7c3-f4c33cefbc57",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 9,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "0e2e102e-2c3b-462e-8382-00b3c65450fe",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 8,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "da06e650-9d68-4eb4-9b39-241be67cc35d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 9,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "cf075645-b6e3-4e7f-92fb-8b5f3bb300d8",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 3,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "4c3deb8e-1ea1-4f46-a91b-46efc70f7cad",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 4,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "08fc4d6d-b4d5-4315-8d8e-9c6395dbeee9",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 5,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "902bfd61-ab2d-4e75-878f-9b95231dfbb6",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 2,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "00d44f32-0c75-44ee-be06-6cf9dda9607d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 3,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f9c7f361-55d7-42d8-a5e2-5e4557917f1b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 4,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "705f76aa-0889-4b3c-bb49-85fb4c04c937",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 5,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "4fd24706-bdea-44ff-8422-394f890578d0",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 2,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "ed6930e2-13b3-4700-89ea-568d11a23db3",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 3,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "9ea24e11-78ed-47ab-9522-b7a3ab98de90",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 4,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "50151bd6-f0ae-40cd-98e6-cb98eea5aa97",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 5,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "c2c42a31-4d3b-44be-b018-6516126850b2",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 8,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "1fef119e-00ed-402b-b522-b54f66ce8ab6",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 9,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "75d0958c-3c12-425a-a6e8-f26a088ba7ce",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 1,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "39f3f3c8-0c6a-4b0c-a968-f56a4a972df2",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 0,
+      "position_y": 11,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "381da3c4-2895-42dd-a2a9-d230ee6388fb",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 1,
+      "position_y": 6,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "d35e338d-d2fd-4d7f-9039-a006297bdadb",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 3,
+      "position_y": 10,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "dcade2d1-9c87-43b4-8bf7-e0624142b992",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 5,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "89e4ca81-5b34-4a65-81b6-b9e37c92066a",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 6,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "b2ad8d33-9b7a-4f80-be30-933973a40aa0",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 7,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "9568acb7-2dfc-408d-af3e-9b240384763b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 9,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "45709a80-9a19-46d1-aaf0-63774ba43e17",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 10,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "36087526-ac0f-40c8-b131-b53935903d7b",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 11,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "8e15dd41-8dd1-45f0-950d-4eaa868d08ad",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 7,
+      "position_y": 1,
+      "growth_stage": 2,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "ab30fd32-b37a-476d-a771-7376265418e7",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 10,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "9c94db75-dc2a-423b-9787-a11a131f342c",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 4,
+      "position_y": 11,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "21cc506b-cde2-4b8d-85f1-ea6f60dacebb",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 0,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "3bd94e72-9b73-4f79-90c0-634ee9dbba22",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 1,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "035828ae-6915-42da-88d1-8e5d8125e095",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 3,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "f517a247-4577-4e2e-a9d7-6fd42fcd0484",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 4,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "871c3c41-68aa-4dba-bb82-45a86956edb9",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 5,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "ab5b5f05-1c22-4846-b6af-1e794f52723d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 6,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "437d849e-b06d-4dc1-bb27-d29b88d09b8c",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 7,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "9956b08e-f4e8-4188-b1e3-00a1e9d3bae8",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 8,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "a9959d14-abc6-41c2-b355-ac48d60a3e67",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 9,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "bfbee811-a48e-4673-a72f-4b17ca84b8df",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 10,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "c4d3a833-aff7-4b5f-a61c-c507ade5921d",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 5,
+      "position_y": 11,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "48a27c2b-6db8-4811-bf1e-8b1bb9e87fc0",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 0,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "24174507-cafa-456c-acfb-dcb0643c2fbf",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 6,
+      "position_y": 1,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "37657dfb-e896-48b4-b75e-05f2ce055a59",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 1,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "b148af8a-b34e-4d8b-918b-f931327be4f9",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 2,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "c8000a1d-78b2-4398-9290-e30551638bc3",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 3,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "58885e7f-b946-4046-9140-8e02863d1bea",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 4,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "7aa949b5-f36c-431a-90ac-347a5c6f8571",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 5,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "41ba37ad-bf4b-4298-8151-b9e2cd25b6d2",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 6,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "59020232-9f69-4c5e-8164-c6b52ade3b9a",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 7,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "10bf9c5a-c5ce-4486-bde1-3a91ef2cf109",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 8,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "442031df-a3be-4e9c-b03d-17661eff8540",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 9,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    },
+    {
+      "crop_id": "529f454d-9d47-407a-b705-b08c1d805c31",
+      "crop_type": "ancient_fruit",
+      "name": "古代果实",
+      "position_x": 8,
+      "position_y": 10,
+      "growth_stage": 1,
+      "max_growth_stage": 3,
+      "watered_today": true
+    }
+  ],
+  "farm_layout": {
+    "grid": [
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "size": 12
+  },
+  "land_status": {
+    "tilled": 144,
+    "planted": 90,
+    "watered": 90,
+    "empty": 54
+  },
+  "achievements": {
+    "daily_streak": 45,
+    "total_harvest": 1017,
+    "reputation": 50
+  },
+  "daily_bonus": {
+    "available": true,
+    "type": "连续访问奖励",
+    "description": "连续访问第45天"
+  },
+  "suggestions": [
+    "剩余空闲土地可种植防风草（预计收益1890金币）",
+    "体力充足，可继续耕作"
+  ],
+  "daily_quota": {
+    "used": 140,
+    "limit": 140,
+    "resets_at": "2026-05-24T06:00:00.000Z"
+  },
+  "daily_quests": [],
+  "inventory": {
+    "cow": 1,
+    "dog": 1,
+    "egg": 1680,
+    "hoe": 1,
+    "pig": 14,
+    "barn": 3,
+    "bass": 1,
+    "carp": 18,
+    "coop": 3,
+    "duck": 1,
+    "milk": 85,
+    "mill": 3,
+    "pike": 4,
+    "pond": 3,
+    "silo": 3,
+    "wool": 69,
+    "horse": 4,
+    "perch": 18,
+    "sheep": 1,
+    "snail": 16,
+    "wheat": 0,
+    "rabbit": 1,
+    "salmon": 2,
+    "stable": 3,
+    "tomato": 26,
+    "winery": 3,
+    "catfish": 4,
+    "chicken": 30,
+    "parsnip": 0,
+    "truffle": 630,
+    "blobfish": 2,
+    "crayfish": 17,
+    "duck_egg": 66,
+    "sturgeon": 3,
+    "blueberry": 0,
+    "buildings": {
+      "barn": {
+        "bonus": {
+          "type": "product_yield",
+          "value": 0.3,
+          "auto_feed": true
+        },
+        "level": 3,
+        "capacity": 16
+      },
+      "coop": {
+        "bonus": {
+          "type": "egg_speed",
+          "value": 0.5,
+          "auto_collect": true
+        },
+        "level": 3,
+        "capacity": 16
+      },
+      "mill": {
+        "bonus": {
+          "type": "crop_price",
+          "crops": [
+            "wheat",
+            "corn",
+            "rice"
+          ],
+          "value": 0.5,
+          "unlock_products": [
+            "flour",
+            "bread",
+            "cake"
+          ]
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "pond": {
+        "bonus": {
+          "type": "fishing",
+          "value": 3,
+          "auto_fish": true,
+          "rare_bonus": 0.3
+        },
+        "level": 3,
+        "capacity": 40
+      },
+      "silo": {
+        "bonus": {
+          "type": "feed_cost",
+          "value": -0.7,
+          "free_feed": true
+        },
+        "level": 3,
+        "capacity": 480
+      },
+      "stable": {
+        "bonus": {
+          "type": "move_speed",
+          "value": 0.6,
+          "auto_path": true
+        },
+        "level": 3,
+        "capacity": 4
+      },
+      "winery": {
+        "bonus": {
+          "type": "fruit_price",
+          "value": 0.8,
+          "unlock_products": [
+            "wine",
+            "aged_wine",
+            "champagne"
+          ]
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "scarecrow": {
+        "bonus": {
+          "type": "crop_protection",
+          "value": 1,
+          "talking": true
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "tool_shed": {
+        "bonus": {
+          "type": "tool_durability",
+          "value": -1
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "flower_pot": {
+        "bonus": {
+          "type": "indoor_planting",
+          "value": 6,
+          "growth_bonus": 0.2,
+          "quality_bonus": 0.25
+        },
+        "level": 3,
+        "capacity": 6
+      },
+      "greenhouse": {
+        "bonus": {
+          "type": "growth_speed",
+          "value": 0.5,
+          "auto_water": true,
+          "quality_bonus": 0.25
+        },
+        "level": 3,
+        "capacity": 48
+      },
+      "compost_bin": {
+        "bonus": {
+          "type": "fertilizer_production",
+          "cycle": 1,
+          "value": 1,
+          "premium_chance": 0.1
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "observatory": {
+        "bonus": {
+          "type": "meteor_shower",
+          "value": true,
+          "season_bonus": 0.4
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "slime_hutch": {
+        "bonus": {
+          "type": "slime",
+          "value": 2,
+          "rare_gems": true
+        },
+        "level": 3,
+        "capacity": 80
+      },
+      "water_tower": {
+        "bonus": {
+          "type": "auto_water",
+          "range": 999,
+          "value": 1,
+          "water_save": 0.4
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "magic_spring": {
+        "bonus": {
+          "type": "animal_output",
+          "value": 0.6,
+          "infinite_energy": true
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "ancient_ruins": {
+        "bonus": {
+          "type": "quality_bonus",
+          "value": 0.35,
+          "weekly_artifact": true
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "golden_statue": {
+        "bonus": {
+          "type": "gold_bonus",
+          "value": 0.8,
+          "daily_income": 1000
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "watering_trough": {
+        "bonus": {
+          "type": "water_energy_save",
+          "value": 0.6,
+          "range_bonus": 3
+        },
+        "level": 3,
+        "capacity": 0
+      },
+      "perpetual_engine": {
+        "bonus": {
+          "type": "auto_farm",
+          "value": true,
+          "daily_income": 500
+        },
+        "level": 1,
+        "capacity": 0
+      }
+    },
+    "rare_seed": 0,
+    "scarecrow": 3,
+    "sprinkler": 5,
+    "tool_shed": 3,
+    "fertilizer": 19,
+    "flower_pot": 3,
+    "greenhouse": 3,
+    "jazz_seeds": 4,
+    "coffee_bean": 0,
+    "compost_bin": 3,
+    "golden_carp": 1,
+    "mystery_box": 6,
+    "observatory": 3,
+    "rabbit_foot": 79,
+    "slime_hutch": 3,
+    "tulip_seeds": 4,
+    "water_tower": 3,
+    "wheat_seeds": 2,
+    "magic_spring": 3,
+    "mermaid_fish": 0,
+    "potato_seeds": 7,
+    "tomato_seeds": 39,
+    "watering_can": 1,
+    "ancient_fruit": 50,
+    "ancient_ruins": 3,
+    "energy_potion": 6,
+    "golden_statue": 3,
+    "parsnip_seeds": 82,
+    "bok_choy_seeds": 13,
+    "eggplant_seeds": 3,
+    "legendary_carp": 0,
+    "blueberry_seeds": 0,
+    "land_expansions": 1,
+    "meteorite_seeds": 1,
+    "purchased_lands": [
+      1
+    ],
+    "rare_seed_seeds": 113,
+    "watering_trough": 3,
+    "hot_pepper_seeds": 5,
+    "perpetual_engine": 1,
+    "cauliflower_seeds": 7,
+    "coffee_bean_seeds": 124,
+    "ancient_fruit_seeds": 4,
+    "total_grid_increase": 20
+  },
+  "inventory_items": [
+    {
+      "key": "egg",
+      "name": "鸡蛋",
+      "count": 1680
+    },
+    {
+      "key": "truffle",
+      "name": "松露",
+      "count": 630
+    },
+    {
+      "key": "coffee_bean_seeds",
+      "name": "咖啡豆种子",
+      "count": 124
+    },
+    {
+      "key": "rare_seed_seeds",
+      "name": "稀有种子种子",
+      "count": 113
+    },
+    {
+      "key": "milk",
+      "name": "牛奶",
+      "count": 85
+    },
+    {
+      "key": "parsnip_seeds",
+      "name": "防风草种子",
+      "count": 82
+    },
+    {
+      "key": "rabbit_foot",
+      "name": "幸运兔脚",
+      "count": 79
+    },
+    {
+      "key": "wool",
+      "name": "羊毛",
+      "count": 69
+    },
+    {
+      "key": "duck_egg",
+      "name": "鸭蛋",
+      "count": 66
+    },
+    {
+      "key": "ancient_fruit",
+      "name": "古代果实",
+      "count": 50
+    },
+    {
+      "key": "tomato_seeds",
+      "name": "番茄种子",
+      "count": 39
+    },
+    {
+      "key": "chicken",
+      "name": "chicken",
+      "count": 30
+    },
+    {
+      "key": "tomato",
+      "name": "番茄",
+      "count": 26
+    },
+    {
+      "key": "total_grid_increase",
+      "name": "total grid increase",
+      "count": 20
+    },
+    {
+      "key": "fertilizer",
+      "name": "肥料",
+      "count": 19
+    },
+    {
+      "key": "carp",
+      "name": "鲤鱼",
+      "count": 18
+    },
+    {
+      "key": "perch",
+      "name": "鲈鱼",
+      "count": 18
+    },
+    {
+      "key": "crayfish",
+      "name": "小龙虾",
+      "count": 17
+    },
+    {
+      "key": "snail",
+      "name": "蜗牛",
+      "count": 16
+    },
+    {
+      "key": "pig",
+      "name": "pig",
+      "count": 14
+    },
+    {
+      "key": "bok_choy_seeds",
+      "name": "青菜种子",
+      "count": 13
+    },
+    {
+      "key": "potato_seeds",
+      "name": "土豆种子",
+      "count": 7
+    },
+    {
+      "key": "cauliflower_seeds",
+      "name": "花椰菜种子",
+      "count": 7
+    },
+    {
+      "key": "mystery_box",
+      "name": "神秘宝箱",
+      "count": 6
+    },
+    {
+      "key": "energy_potion",
+      "name": "体力药水",
+      "count": 6
+    },
+    {
+      "key": "sprinkler",
+      "name": "洒水器",
+      "count": 5
+    },
+    {
+      "key": "hot_pepper_seeds",
+      "name": "辣椒种子",
+      "count": 5
+    },
+    {
+      "key": "pike",
+      "name": "狗鱼",
+      "count": 4
+    },
+    {
+      "key": "horse",
+      "name": "horse",
+      "count": 4
+    },
+    {
+      "key": "catfish",
+      "name": "鲶鱼",
+      "count": 4
+    },
+    {
+      "key": "jazz_seeds",
+      "name": "爵士花种子",
+      "count": 4
+    },
+    {
+      "key": "tulip_seeds",
+      "name": "郁金香种子",
+      "count": 4
+    },
+    {
+      "key": "ancient_fruit_seeds",
+      "name": "古代果实种子",
+      "count": 4
+    },
+    {
+      "key": "barn",
+      "name": "barn",
+      "count": 3
+    },
+    {
+      "key": "coop",
+      "name": "coop",
+      "count": 3
+    },
+    {
+      "key": "mill",
+      "name": "mill",
+      "count": 3
+    },
+    {
+      "key": "pond",
+      "name": "pond",
+      "count": 3
+    },
+    {
+      "key": "silo",
+      "name": "silo",
+      "count": 3
+    },
+    {
+      "key": "stable",
+      "name": "stable",
+      "count": 3
+    },
+    {
+      "key": "winery",
+      "name": "winery",
+      "count": 3
+    },
+    {
+      "key": "sturgeon",
+      "name": "鲟鱼",
+      "count": 3
+    },
+    {
+      "key": "scarecrow",
+      "name": "scarecrow",
+      "count": 3
+    },
+    {
+      "key": "tool_shed",
+      "name": "tool shed",
+      "count": 3
+    },
+    {
+      "key": "flower_pot",
+      "name": "flower pot",
+      "count": 3
+    },
+    {
+      "key": "greenhouse",
+      "name": "greenhouse",
+      "count": 3
+    },
+    {
+      "key": "compost_bin",
+      "name": "compost bin",
+      "count": 3
+    },
+    {
+      "key": "observatory",
+      "name": "observatory",
+      "count": 3
+    },
+    {
+      "key": "slime_hutch",
+      "name": "slime hutch",
+      "count": 3
+    },
+    {
+      "key": "water_tower",
+      "name": "water tower",
+      "count": 3
+    },
+    {
+      "key": "magic_spring",
+      "name": "magic spring",
+      "count": 3
+    }
+  ],
+  "animals": [
+    {
+      "type": "chicken",
+      "name": "母鸡",
+      "count": 30,
+      "product": "egg",
+      "product_name": "鸡蛋",
+      "product_price": 80,
+      "product_cycle": 1
+    },
+    {
+      "type": "cow",
+      "name": "奶牛",
+      "count": 1,
+      "product": "milk",
+      "product_name": "牛奶",
+      "product_price": 200,
+      "product_cycle": 1
+    },
+    {
+      "type": "sheep",
+      "name": "绵羊",
+      "count": 1,
+      "product": "wool",
+      "product_name": "羊毛",
+      "product_price": 300,
+      "product_cycle": 3
+    },
+    {
+      "type": "dog",
+      "name": "牧羊犬",
+      "count": 1,
+      "product": null
+    },
+    {
+      "type": "duck",
+      "name": "鸭子",
+      "count": 1,
+      "product": "duck_egg",
+      "product_name": "鸭蛋",
+      "product_price": 120,
+      "product_cycle": 1
+    },
+    {
+      "type": "rabbit",
+      "name": "兔子",
+      "count": 1,
+      "product": "rabbit_foot",
+      "product_name": "幸运兔脚",
+      "product_price": 400,
+      "product_cycle": 5
+    },
+    {
+      "type": "pig",
+      "name": "猪",
+      "count": 14,
+      "product": "truffle",
+      "product_name": "松露",
+      "product_price": 600,
+      "product_cycle": 3
+    },
+    {
+      "type": "horse",
+      "name": "马",
+      "count": 4,
+      "product": null
+    }
+  ],
+  "buildings": [
+    {
+      "type": "scarecrow",
+      "name": "稻草人",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "crop_protection",
+        "value": 1,
+        "talking": true
+      }
+    },
+    {
+      "type": "compost_bin",
+      "name": "堆肥箱",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "fertilizer_production",
+        "value": 1,
+        "cycle": 1,
+        "premium_chance": 0.1
+      }
+    },
+    {
+      "type": "watering_trough",
+      "name": "浇水槽",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "water_energy_save",
+        "value": 0.6,
+        "range_bonus": 3
+      }
+    },
+    {
+      "type": "tool_shed",
+      "name": "工具棚",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "tool_durability",
+        "value": -1
+      }
+    },
+    {
+      "type": "flower_pot",
+      "name": "花盆",
+      "level": 3,
+      "capacity": 6,
+      "bonus": {
+        "type": "indoor_planting",
+        "value": 6,
+        "quality_bonus": 0.25,
+        "growth_bonus": 0.2
+      }
+    },
+    {
+      "type": "coop",
+      "name": "鸡舍",
+      "level": 3,
+      "capacity": 16,
+      "bonus": {
+        "type": "egg_speed",
+        "value": 0.5,
+        "auto_collect": true
+      }
+    },
+    {
+      "type": "barn",
+      "name": "谷仓",
+      "level": 3,
+      "capacity": 16,
+      "bonus": {
+        "type": "product_yield",
+        "value": 0.3,
+        "auto_feed": true
+      }
+    },
+    {
+      "type": "greenhouse",
+      "name": "温室",
+      "level": 3,
+      "capacity": 48,
+      "bonus": {
+        "type": "growth_speed",
+        "value": 0.5,
+        "quality_bonus": 0.25,
+        "auto_water": true
+      }
+    },
+    {
+      "type": "mill",
+      "name": "磨坊",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "crop_price",
+        "value": 0.5,
+        "crops": [
+          "wheat",
+          "corn",
+          "rice"
+        ],
+        "unlock_products": [
+          "flour",
+          "bread",
+          "cake"
+        ]
+      }
+    },
+    {
+      "type": "winery",
+      "name": "酿酒厂",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "fruit_price",
+        "value": 0.8,
+        "unlock_products": [
+          "wine",
+          "aged_wine",
+          "champagne"
+        ]
+      }
+    },
+    {
+      "type": "silo",
+      "name": "筒仓",
+      "level": 3,
+      "capacity": 480,
+      "bonus": {
+        "type": "feed_cost",
+        "value": -0.7,
+        "free_feed": true
+      }
+    },
+    {
+      "type": "stable",
+      "name": "马厩",
+      "level": 3,
+      "capacity": 4,
+      "bonus": {
+        "type": "move_speed",
+        "value": 0.6,
+        "auto_path": true
+      }
+    },
+    {
+      "type": "water_tower",
+      "name": "水塔",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "auto_water",
+        "value": 1,
+        "range": 999,
+        "water_save": 0.4
+      }
+    },
+    {
+      "type": "pond",
+      "name": "池塘",
+      "level": 3,
+      "capacity": 40,
+      "bonus": {
+        "type": "fishing",
+        "value": 3,
+        "rare_bonus": 0.3,
+        "auto_fish": true
+      }
+    },
+    {
+      "type": "slime_hutch",
+      "name": "史莱姆屋",
+      "level": 3,
+      "capacity": 80,
+      "bonus": {
+        "type": "slime",
+        "value": 2,
+        "rare_gems": true
+      }
+    },
+    {
+      "type": "ancient_ruins",
+      "name": "古代遗迹",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "quality_bonus",
+        "value": 0.35,
+        "weekly_artifact": true
+      }
+    },
+    {
+      "type": "magic_spring",
+      "name": "魔法之泉",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "animal_output",
+        "value": 0.6,
+        "infinite_energy": true
+      }
+    },
+    {
+      "type": "observatory",
+      "name": "天文台",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "meteor_shower",
+        "value": true,
+        "season_bonus": 0.4
+      }
+    },
+    {
+      "type": "golden_statue",
+      "name": "黄金雕像",
+      "level": 3,
+      "capacity": 0,
+      "bonus": {
+        "type": "gold_bonus",
+        "value": 0.8,
+        "daily_income": 1000
+      }
+    },
+    {
+      "type": "perpetual_engine",
+      "name": "永动机工坊",
+      "level": 1,
+      "capacity": 0,
+      "bonus": {
+        "type": "auto_farm",
+        "value": true,
+        "daily_income": 500
+      }
+    }
+  ],
+  "agent_info": {
+    "agent_id": "lobster-farm",
+    "agent_name": "龙虾工具箱农场",
+    "bio": "一只背着工具箱的机械龙虾，种代码也种庄稼"
+  },
+  "map_size": 10,
+  "total_xp": 2032602,
+  "reputation_score": 50,
+  "land_expansions": 1,
+  "npcs": []
+}
