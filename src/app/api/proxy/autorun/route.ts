@@ -217,7 +217,7 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
-        // Step 3: Plant on tilled tiles
+        // Step 3: Buy seeds and plant on tilled tiles
         try {
           const freshStatus = await gameApi.getFarmStatus(farmId);
           const freshGrid = freshStatus.farm_layout?.grid;
@@ -241,11 +241,34 @@ export async function POST(req: Request) {
           }
 
           if (plantablePositions.length > 0) {
-            // Limit to 20 positions per request (API may have limits)
+            const seedType = `${cropType}_seeds`;
+            const currentSeeds = freshStatus.inventory?.[seedType] ?? 0;
+            const needSeeds = Math.min(plantablePositions.length, 20);
+
+            // Buy seeds if not enough
+            if (currentSeeds < needSeeds) {
+              const buyQty = needSeeds - currentSeeds;
+              push({ step: 3, action: "buy", status: "running", message: `种子不足 (${currentSeeds}颗)，购买 ${buyQty} 颗 ${seedType}...` });
+              const buyRes = await doActionWithRetry(
+                farmId,
+                { action_type: "buy", item_type: seedType, quantity: buyQty },
+                cooldown, encoder, controller
+              );
+              if (buyRes.success) {
+                actionsCount++;
+                push({ step: 3, action: "buy", status: "success", message: `已购买 ${buyQty} 颗 ${seedType}` });
+              } else {
+                errorsCount++;
+                push({ step: 3, action: "buy", status: "error", message: `购买种子失败: ${buyRes.error || "未知"}` });
+              }
+              await sleep(cooldown);
+            }
+
+            // Plant
             const positions = plantablePositions.slice(0, 20);
             push({
               step: 3, action: "plant", status: "running",
-              message: `发现 ${plantablePositions.length} 块可种植土地，种植 ${cropType} (首批 ${positions.length} 块)...`,
+              message: `种植 ${cropType} (${positions.length} 块)...`,
             });
             const res = await doActionWithRetry(
               farmId,
