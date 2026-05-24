@@ -59,7 +59,8 @@ async function doActionWithRetry(
   body: Record<string, unknown>,
   cooldown: number,
   encoder: TextEncoder,
-  controller: ReadableStreamDefaultController<Uint8Array>
+  controller: ReadableStreamDefaultController<Uint8Array>,
+  onWaiting?: (waitSec: number) => void
 ): Promise<{ success: boolean; result: Record<string, unknown>; error?: string }> {
   let res = await doActionWithLog(farmId, body);
   if (res.success) return res;
@@ -68,6 +69,7 @@ async function doActionWithRetry(
   const waitSec = parseCooldownSeconds(errMsg);
 
   if (waitSec > 0) {
+    onWaiting?.(waitSec);
     await sleep(waitSec * 1000);
     res = await doActionWithLog(farmId, body);
   }
@@ -387,7 +389,8 @@ export async function POST(req: Request) {
             const res = await doActionWithRetry(
               farmId,
               { action_type: "sell", item_type: bestItem.key, quantity: sellQty },
-              cooldown, encoder, controller
+              cooldown, encoder, controller,
+              (waitSec) => push({ step: 6, action: "sell", status: "running", message: `频率限制，等待 ${waitSec} 秒后重试...` })
             );
             if (res.success) actionsCount++; else errorsCount++;
             push({
