@@ -82,14 +82,15 @@ async function doActionWithRetry(
   return { ...res, error: res.error };
 }
 
-// Pick the highest ROI crop for the current season
-async function getBestCropForSeason(season: string): Promise<string> {
+// Pick the highest ROI crop for the current season, respecting level requirements
+async function getBestCropForSeason(season: string, farmLevel: number): Promise<string> {
   try {
     const config = await gameApi.getGameConfig();
     const seasonLower = season.toLowerCase();
     const candidates = config.crops.filter((c) => {
       const s = c.seasons?.toLowerCase() || "";
-      return s.includes(seasonLower) && c.buy_price > 0;
+      const minLevel = c.min_level ?? 0;
+      return s.includes(seasonLower) && c.buy_price > 0 && farmLevel >= minLevel;
     });
     if (candidates.length === 0) return "parsnip";
     // ROI = (sell - buy) / buy
@@ -158,7 +159,7 @@ export async function POST(req: Request) {
 
         initialGold = status.gold || 0;
         const season = (status.season || "spring").toLowerCase();
-        const cropType = await getBestCropForSeason(season);
+        const cropType = await getBestCropForSeason(season, status.farm_level || 0);
         const weather = (status.weather || "").toLowerCase();
         const isRainy = weather === "rainy" || weather === "stormy";
         const energy = status.energy?.current ?? 0;
