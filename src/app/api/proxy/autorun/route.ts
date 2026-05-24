@@ -25,6 +25,11 @@ async function doActionWithLog(
 
   try {
     result = await gameApi.doAction(farmId, body);
+    // Check game-level success (API returns 200 but success:false on failures)
+    if (result.success === false) {
+      success = false;
+      errorMsg = (result.action_result || result.error || result.message) as string;
+    }
   } catch (e) {
     success = false;
     errorMsg = e instanceof Error ? e.message : "Unknown error";
