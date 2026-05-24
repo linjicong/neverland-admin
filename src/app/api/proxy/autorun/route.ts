@@ -82,14 +82,26 @@ async function doActionWithRetry(
   return { ...res, error: res.error };
 }
 
-// Best seasonal crops for auto-planting
-const seasonalCrops: Record<string, string> = {
-  spring: "parsnip",
-  summer: "blueberry",
-  autumn: "cranberry",
-  fall: "cranberry",
-  winter: "winter_seeds",
-};
+// Pick the highest sell-price crop for the current season
+async function getBestCropForSeason(season: string): Promise<string> {
+  try {
+    const config = await gameApi.getGameConfig();
+    const seasonLower = season.toLowerCase();
+    const candidates = config.crops.filter((c) => {
+      const s = c.seasons?.toLowerCase() || "";
+      return s.includes(seasonLower);
+    });
+    if (candidates.length === 0) return "parsnip";
+    candidates.sort((a, b) => b.sell_price - a.sell_price);
+    return candidates[0].crop_type;
+  } catch {
+    // Fallback
+    const fallback: Record<string, string> = {
+      spring: "rhubarb", summer: "starfruit", autumn: "cranberry", fall: "cranberry", winter: "winter_seeds",
+    };
+    return fallback[season.toLowerCase()] || "parsnip";
+  }
+}
 
 export async function POST(req: Request) {
   const farmId = gameConfig.farmId;
@@ -142,7 +154,7 @@ export async function POST(req: Request) {
 
         initialGold = status.gold || 0;
         const season = (status.season || "spring").toLowerCase();
-        const cropType = seasonalCrops[season] || "parsnip";
+        const cropType = await getBestCropForSeason(season);
         const weather = (status.weather || "").toLowerCase();
         const isRainy = weather === "rainy" || weather === "stormy";
         const energy = status.energy?.current ?? 0;
