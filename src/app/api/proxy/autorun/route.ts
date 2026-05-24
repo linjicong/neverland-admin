@@ -215,7 +215,7 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
-        // Step 3: Plant on empty tilled tiles — re-fetch status
+        // Step 3: Plant on tilled tiles
         try {
           const freshStatus = await gameApi.getFarmStatus(farmId);
           const freshGrid = freshStatus.farm_layout?.grid;
@@ -227,37 +227,38 @@ export async function POST(req: Request) {
           );
 
           // Find tilled-but-empty positions (grid=1, not in plantedPositions)
+          const plantablePositions: [number, number][] = [];
           if (freshGrid) {
-            const plantablePositions: [number, number][] = [];
             for (let y = 0; y < freshGrid.length; y++) {
               for (let x = 0; x < (freshGrid[y]?.length || 0); x++) {
                 if (freshGrid[y][x] === 1 && !plantedPositions.has(`${x},${y}`)) {
                   plantablePositions.push([x, y]);
-
                 }
               }
             }
+          }
 
-            if (plantablePositions.length > 0) {
-              push({
-                step: 3, action: "plant", status: "running",
-                message: `发现 ${plantablePositions.length} 块可种植土地，种植 ${cropType}...`,
-              });
-              const res = await doActionWithRetry(
-                farmId,
-                { action_type: "plant", crop_type: cropType, positions: plantablePositions },
-                cooldown, encoder, controller
-              );
-              if (res.success) actionsCount++; else errorsCount++;
-              push({
-                step: 3, action: "plant",
-                status: res.success ? "success" : "error",
-                message: res.success ? `已种植 ${plantablePositions.length} 株 ${cropType}` : `种植失败: ${res.error || "未知错误"}`,
-              });
-              await sleep(cooldown);
-            } else {
-              push({ step: 3, action: "plant", status: "skip", message: "没有空地需要种植" });
-            }
+          if (plantablePositions.length > 0) {
+            // Limit to 20 positions per request (API may have limits)
+            const positions = plantablePositions.slice(0, 20);
+            push({
+              step: 3, action: "plant", status: "running",
+              message: `发现 ${plantablePositions.length} 块可种植土地，种植 ${cropType} (首批 ${positions.length} 块)...`,
+            });
+            const res = await doActionWithRetry(
+              farmId,
+              { action_type: "plant", crop_type: cropType, positions },
+              cooldown, encoder, controller
+            );
+            if (res.success) actionsCount++; else errorsCount++;
+            push({
+              step: 3, action: "plant",
+              status: res.success ? "success" : "error",
+              message: res.success ? `已种植 ${positions.length} 株 ${cropType}` : `种植失败: ${res.error || "未知错误"}`,
+            });
+            await sleep(cooldown);
+          } else {
+            push({ step: 3, action: "plant", status: "skip", message: "没有空地需要种植" });
           }
         } catch (e) {
           push({ step: 3, action: "plant", status: "error", message: `检查种植失败: ${e instanceof Error ? e.message : "未知"}` });
