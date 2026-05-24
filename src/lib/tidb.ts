@@ -57,4 +57,30 @@ export async function initDatabase(): Promise<void> {
       INDEX idx_action_type (action_type)
     )
   `);
+
+  await pool.execute(`
+    CREATE TABLE IF NOT EXISTS farm_snapshots (
+      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+      farm_id VARCHAR(64) NOT NULL,
+      gold INT NOT NULL DEFAULT 0,
+      farm_level INT NOT NULL DEFAULT 0,
+      xp INT NOT NULL DEFAULT 0,
+      xp_to_next INT NOT NULL DEFAULT 0,
+      energy INT NOT NULL DEFAULT 0,
+      max_energy INT NOT NULL DEFAULT 0,
+      total_crops INT NOT NULL DEFAULT 0,
+      total_animals INT NOT NULL DEFAULT 0,
+      total_buildings INT NOT NULL DEFAULT 0,
+      reputation INT NOT NULL DEFAULT 0,
+      land_tilled INT NOT NULL DEFAULT 0,
+      land_planted INT NOT NULL DEFAULT 0,
+      season VARCHAR(16) NOT NULL DEFAULT '',
+      day INT NOT NULL DEFAULT 0,
+      year INT NOT NULL DEFAULT 0,
+      gold_change INT NOT NULL DEFAULT 0,
+      created_at TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP(3),
+      INDEX idx_farm_id (farm_id),
+      INDEX idx_created_at (created_at)
+    )
+  `);
 }

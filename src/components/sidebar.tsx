@@ -8,6 +8,7 @@ import {
   Zap,
   Database,
   ScrollText,
+  BarChart3,
   Trophy,
   Wheat,
 } from "lucide-react";
@@ -18,6 +19,7 @@ const navItems = [
   { href: "/autorun", label: "一键操作", icon: Zap },
   { href: "/operations", label: "游戏操作", icon: Gamepad2 },
   { href: "/data", label: "数据中心", icon: Database },
+  { href: "/stats", label: "数据统计", icon: BarChart3 },
   { href: "/logs", label: "操作日志", icon: ScrollText },
   { href: "/leaderboard", label: "排行榜", icon: Trophy },
 ];

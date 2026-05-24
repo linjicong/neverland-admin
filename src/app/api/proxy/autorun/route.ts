@@ -377,14 +377,15 @@ export async function POST(req: Request) {
             }
 
             const unitPrice = priceMap.get(bestItem.key) ?? 0;
+            const sellQty = Math.min(bestItem.count, 1000);
             push({
               step: 6, action: "sell", status: "running",
-              message: `出售价值最高的物品: ${bestItem.name} x${bestItem.count} (约 ${bestValue.toLocaleString()}G)`,
+              message: `出售价值最高的物品: ${bestItem.name} x${sellQty} (约 ${(sellQty * unitPrice).toLocaleString()}G)`,
             });
 
             const res = await doActionWithRetry(
               farmId,
-              { action_type: "sell", item_type: bestItem.key, quantity: bestItem.count },
+              { action_type: "sell", item_type: bestItem.key, quantity: sellQty },
               cooldown, encoder, controller
             );
             if (res.success) actionsCount++; else errorsCount++;
@@ -392,7 +393,7 @@ export async function POST(req: Request) {
               step: 6, action: "sell",
               status: res.success ? "success" : "error",
               message: res.success
-                ? `出售 ${bestItem.name} x${bestItem.count} (单价 ${unitPrice}G)`
+                ? `出售 ${bestItem.name} x${sellQty} (单价 ${unitPrice}G)`
                 : `出售 ${bestItem.name} 失败: ${res.error || "未知"}`,
             });
             await sleep(cooldown);
@@ -438,10 +439,40 @@ export async function POST(req: Request) {
 
         // Final summary
         let finalGold = initialGold;
+        let finalStatus;
         try {
-          const finalStatus = await gameApi.getFarmStatus(farmId);
+          finalStatus = await gameApi.getFarmStatus(farmId);
           finalGold = finalStatus.gold || initialGold;
         } catch { /* use initial */ }
+
+        // Save farm snapshot (best-effort)
+        if (finalStatus) {
+          try {
+            await initDatabase();
+            await execute(
+              `INSERT INTO farm_snapshots (farm_id, gold, farm_level, xp, xp_to_next, energy, max_energy, total_crops, total_animals, total_buildings, reputation, land_tilled, land_planted, season, day, year, gold_change) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+              [
+                farmId,
+                finalStatus.gold || 0,
+                finalStatus.farm_level || 0,
+                finalStatus.xp || 0,
+                finalStatus.xp_to_next || 0,
+                finalStatus.energy?.current || 0,
+                finalStatus.energy?.max || 0,
+                (finalStatus.crops_detail || []).length,
+                (finalStatus.animals || []).length,
+                (finalStatus.buildings || []).length,
+                finalStatus.reputation_score || 0,
+                finalStatus.land_status?.tilled || 0,
+                finalStatus.land_status?.planted || 0,
+                finalStatus.season || "",
+                finalStatus.day || 0,
+                finalStatus.year || 0,
+                finalGold - initialGold,
+              ]
+            );
+          } catch { /* ignore */ }
+        }
 
         push({
           step: "done",
