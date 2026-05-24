@@ -82,20 +82,24 @@ async function doActionWithRetry(
   return { ...res, error: res.error };
 }
 
-// Pick the highest sell-price crop for the current season
+// Pick the highest ROI crop for the current season
 async function getBestCropForSeason(season: string): Promise<string> {
   try {
     const config = await gameApi.getGameConfig();
     const seasonLower = season.toLowerCase();
     const candidates = config.crops.filter((c) => {
       const s = c.seasons?.toLowerCase() || "";
-      return s.includes(seasonLower);
+      return s.includes(seasonLower) && c.buy_price > 0;
     });
     if (candidates.length === 0) return "parsnip";
-    candidates.sort((a, b) => b.sell_price - a.sell_price);
+    // ROI = (sell - buy) / buy
+    candidates.sort((a, b) => {
+      const roiA = (a.sell_price - a.buy_price) / a.buy_price;
+      const roiB = (b.sell_price - b.buy_price) / b.buy_price;
+      return roiB - roiA;
+    });
     return candidates[0].crop_type;
   } catch {
-    // Fallback
     const fallback: Record<string, string> = {
       spring: "rhubarb", summer: "starfruit", autumn: "cranberry", fall: "cranberry", winter: "winter_seeds",
     };
