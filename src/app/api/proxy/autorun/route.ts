@@ -253,15 +253,15 @@ export async function POST(req: Request) {
             // Buy seeds if not enough
             if (currentSeeds < needSeeds) {
               const buyQty = needSeeds - currentSeeds;
-              push({ step: 3, action: "buy", status: "running", message: `种子不足 (${currentSeeds}颗)，购买 ${buyQty} 颗 ${seedType}...` });
+              push({ step: 3, action: "buy", status: "running", message: `种子不足 (${currentSeeds}颗)，购买 ${buyQty} 颗 ${cropType} 种子...` });
               const buyRes = await doActionWithRetry(
                 farmId,
-                { action_type: "buy", item_type: seedType, quantity: buyQty },
+                { action_type: "buy", item_type: cropType, quantity: buyQty },
                 cooldown, encoder, controller
               );
               if (buyRes.success) {
                 actionsCount++;
-                push({ step: 3, action: "buy", status: "success", message: `已购买 ${buyQty} 颗 ${seedType}` });
+                push({ step: 3, action: "buy", status: "success", message: `已购买 ${buyQty} 颗 ${cropType} 种子` });
               } else {
                 errorsCount++;
                 push({ step: 3, action: "buy", status: "error", message: `购买种子失败: ${buyRes.error || "未知"}` });
