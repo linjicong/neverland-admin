@@ -346,17 +346,23 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
-        // Step 4: Water all
+        // Step 4: Water all (check if any crops need watering first)
         if (!isRainy) {
-          push({ step: 4, action: "water", status: "running", message: "浇水全部作物..." });
-          const res = await doActionWithRetry(farmId, { action_type: "water", mode: "all" }, cooldown, encoder, controller);
-          if (res.success) actionsCount++; else errorsCount++;
-          push({
-            step: 4, action: "water",
-            status: res.success ? "success" : "error",
-            message: res.success ? "浇水完成" : `浇水失败: ${res.error || "未知错误"}`,
-          });
-          await sleep(cooldown);
+          const waterStatus = await gameApi.getFarmStatus(farmId);
+          const cropsToWater = (waterStatus.crops_detail || []).filter((c) => !c.watered_today);
+          if (cropsToWater.length > 0) {
+            push({ step: 4, action: "water", status: "running", message: `${cropsToWater.length} 株作物需要浇水...` });
+            const res = await doActionWithRetry(farmId, { action_type: "water", mode: "all" }, cooldown, encoder, controller);
+            if (res.success) actionsCount++; else errorsCount++;
+            push({
+              step: 4, action: "water",
+              status: res.success ? "success" : "error",
+              message: res.success ? `浇水完成 (${cropsToWater.length} 株)` : `浇水失败: ${res.error || "未知错误"}`,
+            });
+            await sleep(cooldown);
+          } else {
+            push({ step: 4, action: "water", status: "skip", message: "所有作物已浇水，跳过" });
+          }
         } else {
           push({ step: 4, action: "water", status: "skip", message: `${weather}天气，自动跳过浇水` });
         }
