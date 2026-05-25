@@ -82,30 +82,11 @@ async function doActionWithRetry(
   return { ...res, error: res.error };
 }
 
-// Pick the highest ROI crop for the current season, respecting level requirements
-async function getBestCropForSeason(season: string, farmLevel: number): Promise<string> {
-  try {
-    const config = await gameApi.getGameConfig();
-    const seasonLower = season.toLowerCase();
-    const candidates = config.crops.filter((c) => {
-      const s = c.seasons?.toLowerCase() || "";
-      const minLevel = c.min_level ?? 0;
-      return s.includes(seasonLower) && c.buy_price > 0 && farmLevel >= minLevel;
-    });
-    if (candidates.length === 0) return "parsnip";
-    // ROI = (sell - buy) / buy
-    candidates.sort((a, b) => {
-      const roiA = (a.sell_price - a.buy_price) / a.buy_price;
-      const roiB = (b.sell_price - b.buy_price) / b.buy_price;
-      return roiB - roiA;
-    });
-    return candidates[0].crop_type;
-  } catch {
-    const fallback: Record<string, string> = {
-      spring: "rhubarb", summer: "starfruit", autumn: "cranberry", fall: "cranberry", winter: "winter_seeds",
-    };
-    return fallback[season.toLowerCase()] || "parsnip";
-  }
+// Hardcoded crop plan: Spring/Summer/Fall -> star_rose, Winter -> powder_melon
+function getCropForSeason(season: string): string {
+  const s = season.toLowerCase();
+  if (s === "winter") return "powder_melon";
+  return "star_rose"; // spring, summer, fall
 }
 
 export async function POST(req: Request) {
@@ -159,7 +140,7 @@ export async function POST(req: Request) {
 
         initialGold = status.gold || 0;
         const season = (status.season || "spring").toLowerCase();
-        const cropType = await getBestCropForSeason(season, status.farm_level || 0);
+        const cropType = getCropForSeason(season);
         const weather = (status.weather || "").toLowerCase();
         const isRainy = weather === "rainy" || weather === "stormy";
         const energy = status.energy?.current ?? 0;
@@ -239,6 +220,58 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
+        // Step 2.5: Check energy, buy & use potions to fill up
+        {
+          let currentEnergy = energy;
+          const needed = maxEnergy - currentEnergy;
+          if (needed > 0) {
+            const potionsNeeded = Math.ceil(needed / 50);
+            push({ step: 2.5, action: "energy_check", status: "running", message: `体力 ${currentEnergy}/${maxEnergy}，需要 ${potionsNeeded} 瓶体力药水补满...` });
+
+            // Check inventory for existing potions
+            const energyStatus = await gameApi.getFarmStatus(farmId);
+            const currentPotions = energyStatus.inventory?.energy_potion ?? 0;
+
+            if (currentPotions < potionsNeeded) {
+              const buyPotionQty = potionsNeeded - currentPotions;
+              push({ step: 2.5, action: "buy_potion", status: "running", message: `体力药水不足 (${currentPotions}瓶)，购买 ${buyPotionQty} 瓶...` });
+              const buyRes = await doActionWithRetry(
+                farmId,
+                { action_type: "buy", item_type: "energy_potion", quantity: buyPotionQty },
+                cooldown, encoder, controller
+              );
+              if (buyRes.success) {
+                actionsCount++;
+                push({ step: 2.5, action: "buy_potion", status: "success", message: `已购买 ${buyPotionQty} 瓶体力药水` });
+              } else {
+                errorsCount++;
+                push({ step: 2.5, action: "buy_potion", status: "error", message: `购买体力药水失败: ${buyRes.error || "未知"}` });
+              }
+              await sleep(cooldown);
+            }
+
+            // Use potions to fill energy
+            const useRes = await doActionWithRetry(
+              farmId,
+              { action_type: "use", item_type: "energy_potion", quantity: potionsNeeded },
+              cooldown, encoder, controller
+            );
+            if (useRes.success) {
+              actionsCount++;
+              currentEnergy = Math.min(currentEnergy + potionsNeeded * 50, maxEnergy);
+              push({ step: 2.5, action: "use_potion", status: "success", message: `使用 ${potionsNeeded} 瓶体力药水，体力恢复至 ${currentEnergy}/${maxEnergy}` });
+            } else {
+              errorsCount++;
+              push({ step: 2.5, action: "use_potion", status: "error", message: `使用体力药水失败: ${useRes.error || "未知"}` });
+            }
+            await sleep(cooldown);
+          } else {
+            push({ step: 2.5, action: "energy_check", status: "success", message: `体力已满 (${currentEnergy}/${maxEnergy})` });
+          }
+        }
+
+        if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
+
         // Step 3: Buy seeds and plant on tilled tiles
         try {
           const freshStatus = await gameApi.getFarmStatus(farmId);
@@ -265,7 +298,7 @@ export async function POST(req: Request) {
           if (plantablePositions.length > 0) {
             const seedType = `${cropType}_seeds`;
             const currentSeeds = freshStatus.inventory?.[seedType] ?? 0;
-            const needSeeds = Math.min(plantablePositions.length, 20);
+            const needSeeds = Math.min(plantablePositions.length, 48);
 
             // Buy seeds if not enough
             if (currentSeeds < needSeeds) {
@@ -287,7 +320,7 @@ export async function POST(req: Request) {
             }
 
             // Plant
-            const positions = plantablePositions.slice(0, 20);
+            const positions = plantablePositions.slice(0, 48);
             push({
               step: 3, action: "plant", status: "running",
               message: `种植 ${cropType} (${positions.length} 块)...`,
@@ -455,36 +488,7 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
-        // Step 7: Next day
-        push({ step: 7, action: "next-day", status: "running", message: "进入下一天..." });
-        {
-          let success = true;
-          let errorMsg: string | undefined;
-          let result: Record<string, unknown>;
-          try {
-            result = await gameApi.nextDay(farmId);
-          } catch (e) {
-            success = false;
-            errorMsg = e instanceof Error ? e.message : "Unknown error";
-            result = { error: errorMsg };
-          }
-
-          // Log to TiDB
-          try {
-            await initDatabase();
-            await execute(
-              `INSERT INTO operation_logs (farm_id, action_type, request_body, response_body, success, error_message) VALUES (?, ?, ?, ?, ?, ?)`,
-              [farmId, "next-day", "{}", JSON.stringify(result), success, errorMsg || null]
-            );
-          } catch { /* ignore */ }
-
-          if (success) actionsCount++; else errorsCount++;
-          push({
-            step: 7, action: "next-day",
-            status: success ? "success" : "error",
-            message: success ? "已进入下一天" : `进入下一天失败: ${errorMsg || "未知"}`,
-          });
-        }
+        // Step 7: Next day (skipped per user request)
 
         // Final summary
         let finalGold = initialGold;
