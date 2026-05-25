@@ -321,6 +321,27 @@ export async function POST(req: Request) {
           const waterStatus = await gameApi.getFarmStatus(farmId);
           const cropsToWater = (waterStatus.crops_detail || []).filter((c) => !c.watered_today);
           if (cropsToWater.length > 0) {
+            // Check energy: 6 per crop
+            const waterEnergyCost = cropsToWater.length * 6;
+            const wEnergy = waterStatus.energy?.current ?? 0;
+            if (wEnergy < waterEnergyCost) {
+              const potionsNeeded = Math.ceil((waterEnergyCost - wEnergy) / 50);
+              push({ step: 4, action: "buy_potion", status: "running", message: `体力不足 (${wEnergy})，浇水需要 ${waterEnergyCost}，购买 ${potionsNeeded} 瓶体力药水...` });
+              const buyRes = await doActionWithRetry(
+                farmId,
+                { action_type: "buy", item_type: "energy_potion", quantity: potionsNeeded },
+                cooldown, encoder, controller
+              );
+              if (buyRes.success) {
+                actionsCount++;
+                push({ step: 4, action: "buy_potion", status: "success", message: `已购买 ${potionsNeeded} 瓶体力药水` });
+              } else {
+                errorsCount++;
+                push({ step: 4, action: "buy_potion", status: "error", message: `购买体力药水失败: ${buyRes.error || "未知"}` });
+              }
+              await sleep(cooldown);
+            }
+
             push({ step: 4, action: "water", status: "running", message: `${cropsToWater.length} 株作物需要浇水...` });
             const res = await doActionWithRetry(farmId, { action_type: "water", mode: "all" }, cooldown, encoder, controller);
             if (res.success) actionsCount++; else errorsCount++;
