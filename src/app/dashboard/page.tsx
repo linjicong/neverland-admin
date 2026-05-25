@@ -129,6 +129,7 @@ export default function DashboardPage() {
           icon={<Star className="w-6 h-6" />}
           subtitle={`${(status.xp ?? 0).toLocaleString()} / ${(status.xp_to_next ?? 0).toLocaleString()} XP`}
           color="purple"
+          progress={{ current: status.xp ?? 0, max: status.xp_to_next ?? 1 }}
         />
         <StatCard
           title="季节 / 天数"

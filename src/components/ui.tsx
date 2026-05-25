@@ -7,6 +7,7 @@ interface CardProps {
   subtitle?: string;
   color?: "green" | "blue" | "amber" | "purple" | "red" | "cyan";
   className?: string;
+  progress?: { current: number; max: number };
 }
 
 const colorMap = {
@@ -18,7 +19,8 @@ const colorMap = {
   cyan: "from-cyan-500/20 to-teal-500/10 text-cyan-400 border-cyan-500/20",
 };
 
-export function StatCard({ title, value, icon, subtitle, color = "green", className }: CardProps) {
+export function StatCard({ title, value, icon, subtitle, color = "green", className, progress }: CardProps) {
+  const pct = progress && progress.max > 0 ? Math.min(100, Math.round((progress.current / progress.max) * 100)) : null;
   return (
     <div
       className={cn(
@@ -28,12 +30,26 @@ export function StatCard({ title, value, icon, subtitle, color = "green", classN
       )}
     >
       <div className="flex items-start justify-between">
-        <div>
+        <div className="w-full">
           <p className="text-xs font-medium text-slate-400 uppercase tracking-wider">{title}</p>
           <p className="mt-2 text-2xl font-bold">{value}</p>
           {subtitle && <p className="mt-1 text-xs text-slate-500">{subtitle}</p>}
+          {pct !== null && (
+            <div className="mt-3 space-y-1">
+              <div className="flex justify-between text-xs">
+                <span className="text-slate-500">经验进度</span>
+                <span className="text-slate-400 font-mono">{pct}%</span>
+              </div>
+              <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-purple-500 to-violet-400 transition-all duration-500"
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
+            </div>
+          )}
         </div>
-        {icon && <div className="opacity-60">{icon}</div>}
+        {icon && <div className="opacity-60 shrink-0">{icon}</div>}
       </div>
     </div>
   );
