@@ -220,59 +220,7 @@ export async function POST(req: Request) {
 
         if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
 
-        // Step 2.5: Check energy, buy & use potions to fill up
-        {
-          let currentEnergy = energy;
-          const needed = maxEnergy - currentEnergy;
-          if (needed > 0) {
-            const potionsNeeded = Math.ceil(needed / 50);
-            push({ step: 2.5, action: "energy_check", status: "running", message: `体力 ${currentEnergy}/${maxEnergy}，需要 ${potionsNeeded} 瓶体力药水补满...` });
-
-            // Check inventory for existing potions
-            const energyStatus = await gameApi.getFarmStatus(farmId);
-            const currentPotions = energyStatus.inventory?.energy_potion ?? 0;
-
-            if (currentPotions < potionsNeeded) {
-              const buyPotionQty = potionsNeeded - currentPotions;
-              push({ step: 2.5, action: "buy_potion", status: "running", message: `体力药水不足 (${currentPotions}瓶)，购买 ${buyPotionQty} 瓶...` });
-              const buyRes = await doActionWithRetry(
-                farmId,
-                { action_type: "buy", item_type: "energy_potion", quantity: buyPotionQty },
-                cooldown, encoder, controller
-              );
-              if (buyRes.success) {
-                actionsCount++;
-                push({ step: 2.5, action: "buy_potion", status: "success", message: `已购买 ${buyPotionQty} 瓶体力药水` });
-              } else {
-                errorsCount++;
-                push({ step: 2.5, action: "buy_potion", status: "error", message: `购买体力药水失败: ${buyRes.error || "未知"}` });
-              }
-              await sleep(cooldown);
-            }
-
-            // Use potions to fill energy
-            const useRes = await doActionWithRetry(
-              farmId,
-              { action_type: "use", item_type: "energy_potion", quantity: potionsNeeded },
-              cooldown, encoder, controller
-            );
-            if (useRes.success) {
-              actionsCount++;
-              currentEnergy = Math.min(currentEnergy + potionsNeeded * 50, maxEnergy);
-              push({ step: 2.5, action: "use_potion", status: "success", message: `使用 ${potionsNeeded} 瓶体力药水，体力恢复至 ${currentEnergy}/${maxEnergy}` });
-            } else {
-              errorsCount++;
-              push({ step: 2.5, action: "use_potion", status: "error", message: `使用体力药水失败: ${useRes.error || "未知"}` });
-            }
-            await sleep(cooldown);
-          } else {
-            push({ step: 2.5, action: "energy_check", status: "success", message: `体力已满 (${currentEnergy}/${maxEnergy})` });
-          }
-        }
-
-        if (isAborted()) { push({ step: "done", status: "skip", message: "已中止" }); controller.close(); return; }
-
-        // Step 3: Buy seeds and plant on tilled tiles
+        // Step 3: Refill energy, buy seeds, and plant on tilled tiles
         try {
           const freshStatus = await gameApi.getFarmStatus(farmId);
           const freshGrid = freshStatus.farm_layout?.grid;
@@ -299,6 +247,28 @@ export async function POST(req: Request) {
             const seedType = `${cropType}_seeds`;
             const currentSeeds = freshStatus.inventory?.[seedType] ?? 0;
             const needSeeds = Math.min(plantablePositions.length, 48);
+
+            // Refill energy before planting (buy potions, buying restores energy)
+            const curEnergy = freshStatus.energy?.current ?? 0;
+            const maxE = freshStatus.energy?.max ?? 100;
+            const energyNeeded = maxE - curEnergy;
+            if (energyNeeded > 0) {
+              const potionsNeeded = Math.ceil(energyNeeded / 50);
+              push({ step: 3, action: "buy_potion", status: "running", message: `体力 ${curEnergy}/${maxE}，购买 ${potionsNeeded} 瓶体力药水补满...` });
+              const buyPotionRes = await doActionWithRetry(
+                farmId,
+                { action_type: "buy", item_type: "energy_potion", quantity: potionsNeeded },
+                cooldown, encoder, controller
+              );
+              if (buyPotionRes.success) {
+                actionsCount++;
+                push({ step: 3, action: "buy_potion", status: "success", message: `已购买 ${potionsNeeded} 瓶体力药水，体力已补满` });
+              } else {
+                errorsCount++;
+                push({ step: 3, action: "buy_potion", status: "error", message: `购买体力药水失败: ${buyPotionRes.error || "未知"}` });
+              }
+              await sleep(cooldown);
+            }
 
             // Buy seeds if not enough
             if (currentSeeds < needSeeds) {
