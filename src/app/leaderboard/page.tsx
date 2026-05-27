@@ -65,7 +65,7 @@ export default function LeaderboardPage() {
       ) : data.length === 0 ? (
         <div className="text-center py-20 text-slate-500">暂无排行数据</div>
       ) : (
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-slate-800/60">
