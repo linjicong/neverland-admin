@@ -81,3 +81,22 @@ export function ProgressBar({ label, current, max, color = "bg-emerald-500" }: P
     </div>
   );
 }
+
+interface SectionCardProps {
+  title: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function SectionCard({ title, icon, children, className }: SectionCardProps) {
+  return (
+    <div className={cn("rounded-2xl border border-slate-800 bg-slate-900/50 p-5 space-y-4", className)}>
+      <h3 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
+        {icon}
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
