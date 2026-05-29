@@ -9,7 +9,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Filter,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
+import { parseActionResponse } from "@/lib/game-api";
+import { LogDetail } from "@/components/logs/log-detail";
 
 interface LogEntry {
   id: number;
@@ -41,6 +45,20 @@ const actionTypeColors: Record<string, string> = {
   collect_products: "bg-orange-500/15 text-orange-400",
   buy_building: "bg-indigo-500/15 text-indigo-400",
   buy_animal: "bg-pink-500/15 text-pink-400",
+};
+
+const actionTypeNames: Record<string, string> = {
+  till: "开垦",
+  plant: "种植",
+  water: "浇水",
+  harvest: "收获",
+  sell: "出售",
+  buy: "购买",
+  "next-day": "进入下一天",
+  fish: "钓鱼",
+  collect_products: "收集产品",
+  buy_building: "购买建筑",
+  buy_animal: "购买动物",
 };
 
 export default function LogsPage() {
@@ -164,61 +182,15 @@ export default function LogsPage() {
       ) : (
         <div className="space-y-2">
           {logs.map((log) => (
-            <div
+            <LogItem
               key={log.id}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden"
-            >
-              <button
-                onClick={() =>
-                  setExpandedLog(expandedLog === log.id ? null : log.id)
-                }
-                className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-slate-800/30 transition-colors"
-              >
-                {log.success ? (
-                  <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                ) : (
-                  <XCircle className="w-4 h-4 text-red-400 shrink-0" />
-                )}
-
-                <span
-                  className={`px-2.5 py-0.5 rounded-lg text-xs font-medium shrink-0 ${
-                    actionTypeColors[log.action_type] ||
-                    "bg-slate-700/50 text-slate-400"
-                  }`}
-                >
-                  {log.action_type}
-                </span>
-
-                {log.error_message && (
-                  <span className="text-xs text-red-400 truncate flex-1">
-                    {log.error_message}
-                  </span>
-                )}
-
-                <span className="text-xs text-slate-500 font-mono shrink-0 ml-auto">
-                  {formatTime(log.created_at)}
-                </span>
-              </button>
-
-              {expandedLog === log.id && (
-                <div className="px-5 pb-4 border-t border-slate-800/50 pt-3">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-xs text-slate-500 mb-1">请求</p>
-                      <pre className="text-xs text-slate-300 bg-slate-800/50 rounded-lg p-3 overflow-auto max-h-40 font-mono">
-                        {safeJson(log.request_body)}
-                      </pre>
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-500 mb-1">响应</p>
-                      <pre className="text-xs text-slate-300 bg-slate-800/50 rounded-lg p-3 overflow-auto max-h-40 font-mono">
-                        {safeJson(log.response_body)}
-                      </pre>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+              log={log}
+              expanded={expandedLog === log.id}
+              onToggle={() =>
+                setExpandedLog(expandedLog === log.id ? null : log.id)
+              }
+              formatTime={formatTime}
+            />
           ))}
         </div>
       )}
@@ -245,6 +217,92 @@ export default function LogsPage() {
             下一页
             <ChevronRight className="w-4 h-4" />
           </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LogItem({
+  log,
+  expanded,
+  onToggle,
+  formatTime,
+}: {
+  log: LogEntry;
+  expanded: boolean;
+  onToggle: () => void;
+  formatTime: (dateStr: string) => string;
+}) {
+  const parsed = parseActionResponse(log.response_body);
+  const hasRichData = parsed && (parsed.action_result || parsed.state_changes || parsed.random_event);
+
+  return (
+    <div className="rounded-2xl border border-slate-800 bg-slate-900/50 overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-slate-800/30 transition-colors"
+      >
+        {log.success ? (
+          <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+        ) : (
+          <XCircle className="w-4 h-4 text-red-400 shrink-0" />
+        )}
+
+        <span
+          className={`px-2.5 py-0.5 rounded-lg text-xs font-medium shrink-0 ${
+            actionTypeColors[log.action_type] ||
+            "bg-slate-700/50 text-slate-400"
+          }`}
+        >
+          {actionTypeNames[log.action_type] || log.action_type}
+        </span>
+
+        {hasRichData && parsed?.action_result ? (
+          <span className="text-sm text-slate-300 truncate flex-1">
+            {parsed.action_result}
+          </span>
+        ) : log.error_message ? (
+          <span className="text-xs text-red-400 truncate flex-1">
+            {log.error_message}
+          </span>
+        ) : (
+          <span className="text-xs text-slate-500 truncate flex-1">
+            {log.action_type}
+          </span>
+        )}
+
+        <span className="text-xs text-slate-500 font-mono shrink-0 ml-auto">
+          {formatTime(log.created_at)}
+        </span>
+
+        {expanded ? (
+          <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
+        )}
+      </button>
+
+      {expanded && (
+        <div className="px-5 pb-4 border-t border-slate-800/50 pt-3 space-y-3">
+          {parsed ? (
+            <LogDetail parsed={parsed} requestBody={log.request_body} responseBody={log.response_body} />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs text-slate-500 mb-1">请求</p>
+                <pre className="text-xs text-slate-300 bg-slate-800/50 rounded-lg p-3 overflow-auto max-h-40 font-mono">
+                  {safeJson(log.request_body)}
+                </pre>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 mb-1">响应</p>
+                <pre className="text-xs text-slate-300 bg-slate-800/50 rounded-lg p-3 overflow-auto max-h-40 font-mono">
+                  {safeJson(log.response_body)}
+                </pre>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

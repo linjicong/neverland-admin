@@ -255,6 +255,51 @@ export interface ActionLog {
   created_at: string;
 }
 
+export interface ActionResponse {
+  success: boolean;
+  action_result?: string;
+  state_changes?: {
+    gold?: number;
+    xp?: number;
+    energy?: number;
+    inventory?: Record<string, number>;
+  };
+  random_event?: {
+    id: string;
+    name: string;
+    type: string;
+    message: string;
+    effects?: Record<string, number>;
+  };
+  quota_used?: number;
+  quota_remaining?: number;
+  next_reset_at?: string;
+  level_up?: {
+    new_level: number;
+    new_title: string;
+  } | null;
+  new_unlocks?: string[];
+}
+
+export function parseActionResponse(json: string): ActionResponse | null {
+  try {
+    const parsed = JSON.parse(json) as ActionResponse;
+    if (typeof parsed.success !== "boolean") return null;
+    // 至少包含一个可展示的字段才认为是有效的操作响应
+    const hasMeaningfulData =
+      parsed.action_result !== undefined ||
+      parsed.state_changes !== undefined ||
+      parsed.random_event !== undefined ||
+      parsed.quota_used !== undefined ||
+      parsed.level_up !== undefined ||
+      parsed.new_unlocks !== undefined;
+    if (!hasMeaningfulData) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
 export const gameApi = {
   getFarmStatus: (farmId: string) =>
     request<FarmStatus>(`/api/farm/${farmId}/status`),
